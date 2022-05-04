@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Entries</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link th:href="@{~/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{~/fontawesome/css/all.css}" rel="stylesheet">
+    <h2>Production Orders</h2>
+</head>
+<body>
+<header th:insert="fragments.html :: nav"></header>
+    <div class="container">
+        <table class="table table-sm table-bordered table-condensed text-small">
+            <thead class="thead-dark">
+            <tr>
+                <th>Production Order</th>
+                <th>Employee ID</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <form th:action="@{/subassembly/find}" method="GET">
+                <div class="form-group">
+                    <br>
+                    <div>
+                        <select name="searchCriteria">
+                            <option value="0">Criteria</option>
+                            <option value="productionOrder">Production Order</option>
+                            <option value="employeeId">Employee ID</option>
+                        </select>
+                        <input type="text" name="searchTerm" placeholder="Search Term"/>
+                        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+                        <a th:href="@{/subassembly/add-form}" class="btn btn-primary btn-sm">Add New</a>
+
+                    </div>
+                </div>
+            </form>
+            <tr th:each="entry: ${entries}">
+                <td th:text="${entry.productionOrder}"/>
+                <td th:text="${entry.employeeId}"/>
+                <td th:text="${#dates.format(entry.startDate, 'MMM-dd-YYYY HH:mm')}"/>
+                <td th:text="${#dates.format(entry.endDate, 'MMM-dd-YYYY HH:mm')}"/>
+                <td th:text="${entry.status}"/>
+                <td>
+                    <a th:href="@{/subassembly/update(id=${entry.id})}" class="btn btn-primary btn-sm">
+                        Update
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
