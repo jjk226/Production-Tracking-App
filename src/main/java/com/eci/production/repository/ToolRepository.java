@@ -10,6 +10,6 @@ import java.util.List;
 public interface ToolRepository extends JpaRepository<Tool, Integer> {
 
     public Tool findById(int id);
-    public List<Entry> findBySerialNumber(int serialNumber);
+    public List<Tool> findBySerialNumber(int serialNumber);
 
 }

@@ -13,9 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -32,7 +31,8 @@ public class ToolController {
     @GetMapping("/")
     public String showTools(Model model) {
         List<Tool> tools = toolService.findAll();
-        model.addAttribute("tools", tools);
+        List<Tool> sortedTools = tools.stream().sorted((e1, e2) -> e1.getSerialNumber() - e2.getSerialNumber()).collect(Collectors.toList());
+        model.addAttribute("tools", sortedTools);
         return "tools";
     }
 
@@ -73,5 +73,17 @@ public class ToolController {
         return "redirect:/tool/update?id=" + id;
     }
 
+    @GetMapping("find")
+    public String findBySerialNumber(
+            @RequestParam String searchCriteria,
+            @RequestParam String searchTerm,
+            Model model) {
+        if (searchCriteria.equals("serialNumber")) {
+            List<Tool> tools = toolService.findBySerialNumber(Integer.valueOf(searchTerm));
+            model.addAttribute("tools", tools);
+        }
+
+        return "tools";
+    }
 
 }

@@ -1,6 +1,5 @@
 package com.eci.production.service;
 
-import com.eci.production.entity.Entry;
 import com.eci.production.entity.Tool;
 import com.eci.production.repository.ToolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -37,7 +35,7 @@ public class ToolServiceImpl implements ToolService {
     }
 
     @Override
-    public List<Entry> findBySerialNumber(int serialNumber) {
+    public List<Tool> findBySerialNumber(int serialNumber) {
         return toolRepository.findBySerialNumber(serialNumber);
     }
 
