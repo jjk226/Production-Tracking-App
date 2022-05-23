@@ -34,6 +34,7 @@ public class SubAssemblyController {
         savedEntry.setProductionOrder(entry.getProductionOrder());
         savedEntry.setEmployeeId(entry.getEmployeeId());
         savedEntry.setOperation(entry.getOperation());
+        savedEntry.setNote(entry.getNote());
         String savedEntryStatus = savedEntry.getStatus();
         String entryStatus = entry.getStatus();
 
@@ -126,10 +127,13 @@ public class SubAssemblyController {
         return "update-entry";
     }
 
-    @DeleteMapping(path="/delete")
-    @ResponseBody
-    public void delete(@RequestParam("id") int id) {
-        entryService.deleteById(id);
+    @GetMapping(path="/delete")
+    public String deleteEntry(@RequestParam("id") int id) {
+        Entry entryToDelete = entryService.findById(id);
+        System.out.println(entryToDelete.getNote());
+        entryService.delete(entryToDelete);
+
+        return "redirect:/tool/";
     }
 
     @GetMapping(path="/entries")

@@ -29,7 +29,11 @@
             <option th:value="REWORK" th:text="REWORK"></option>
             <option th:value="MEETING" th:text="MEETING"></option>
             <option th:value="BOM_ISSUE" th:text="'BOM ISSUE'"></option>
-            <option th:value="PARTS_ISSUE" th:text="'PART ISSUE'"></option>
+            <option th:value="PARTS_ISSUE" th:text="'PART/QUALITY ISSUE'"></option>
+            <option th:value="MISSING_PARTS" th:text="'MISSING PARTS'"></option>
+            <option th:value="FLOW_DIAGRAM" th:text="'FLOW DIAGRAM'"></option>
+            <option th:value="WAD" th:text="WAD"></option>
+            <option th:value="DOCUMENTATION" th:text="'DOCUMENTATION ERROR'"></option>
         </select>
         <br><br>
       Start Date: <text th:text="${#dates.format(tempEntry.startDate, 'MMM-dd-YYYY HH:mm')}"></text>
@@ -42,6 +46,11 @@
             <option th:value="OPEN" th:text="Open"></option>
             <option th:value="CLOSED" th:text="Closed"></option>
         </select>
+        <br><br>
+    Note:
+        <br>
+<!--        <input type="text" th:field="${tempEntry.note}">-->
+        <textarea rows="3" cols="40" th:field="${tempEntry.note}"></textarea>
         <br><br>
         <button type="submit" class="btn btn-primary btn-sm">Save</button>
     </form>

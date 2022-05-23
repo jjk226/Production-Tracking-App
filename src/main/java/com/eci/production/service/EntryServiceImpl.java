@@ -45,8 +45,8 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
-    public void deleteById(int id) {
-        entryRepository.deleteById(id);
+    public void delete(Entry entry) {
+        entryRepository.delete(entry);
     }
 
     @Override

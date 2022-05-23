@@ -45,6 +45,9 @@ public class Entry {
 
     private double timeDiff;
 
+    @Column(name="note")
+    private String note;
+
     public Entry() {}
 
     public int getId() {
@@ -117,6 +120,14 @@ public class Entry {
 
     public void setTool(Tool tool) {
         this.tool = tool;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public double getTimeDiff() {

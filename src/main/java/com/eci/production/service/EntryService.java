@@ -15,7 +15,7 @@ public interface EntryService {
 
     public void save(Entry entry);
 
-    public void deleteById(int id);
+    public void delete(Entry entry);
 
     List<Entry> findByProductionOrder(int productionOrder);
 
