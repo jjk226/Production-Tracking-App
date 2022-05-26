@@ -17,6 +17,8 @@ public interface EntryService {
 
     public void deleteById(int id);
 
+    public void delete(Entry entry);
+
     List<Entry> findByProductionOrder(int productionOrder);
 
     List<Entry> findByTool(Tool tool);

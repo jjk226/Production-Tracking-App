@@ -126,10 +126,13 @@ public class SubAssemblyController {
         return "update-entry";
     }
 
-    @DeleteMapping(path="/delete")
-    @ResponseBody
-    public void delete(@RequestParam("id") int id) {
-        entryService.deleteById(id);
+    @GetMapping(path="/delete")
+    public String delete(@RequestParam("entryId") int entryId, @RequestParam("toolId") int toolId) {
+        Entry entryToDelete = entryService.findById(entryId);
+        System.out.println("entry to delete: " + entryToDelete);
+        entryService.delete(entryToDelete);
+
+        return "redirect:/tool/update?id=" + toolId;
     }
 
     @GetMapping(path="/entries")

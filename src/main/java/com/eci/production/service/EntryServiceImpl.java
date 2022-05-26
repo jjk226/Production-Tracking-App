@@ -50,6 +50,11 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
+    public void delete(Entry entry) {
+        entryRepository.delete(entry);
+    }
+
+    @Override
     public List<Entry> findByProductionOrder(int productionOrder) {
         return entryRepository.findByProductionOrder(productionOrder);
     }
