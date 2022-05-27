@@ -51,10 +51,9 @@
         <tr>
             <th>Employee Id</th>
             <th>Operation</th>
-            <th>Note</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Total Hours</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Total Time (hrs)</th>
             <th>Status</th>
             <th>Action</th>
         </tr>
@@ -63,18 +62,14 @@
         <tr th:each="entry: ${entries}">
             <td th:text="${entry.employeeId}"/>
             <td th:text="${entry.operation}"/>
-            <td th:text="${entry.note}"/>
-            <td th:text="${#dates.format(entry.startDate, 'MM/dd/YY HH:mm')}"/>
-            <td th:text="${#dates.format(entry.endDate, 'MM/dd/YY HH:mm')}"/>
+            <td th:text="${#dates.format(entry.startDate, 'MMM-dd-YYYY HH:mm')}"/>
+            <td th:text="${#dates.format(entry.endDate, 'MMM-dd-YYYY HH:mm')}"/>
             <td th:text="${entry.timeDiff}"/>
             <td th:style="${entry.status} == 'CLOSED' ? 'background: #33FF4E' : 'background: #FF4F33'" th:text="${entry.status}" />
             <td>
                 <a th:href="@{/subassembly/update(id=${entry.id})}" class="btn btn-primary btn-sm">
                     Update
                 </a>
-<!--                <a th:href="@{/subassembly/delete(id=${entry.id})}" class="btn btn-danger btn-sm">-->
-<!--                    Delete-->
-<!--                </a>-->
             </td>
         </tr>
         </tbody>

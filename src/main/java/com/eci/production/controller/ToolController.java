@@ -73,6 +73,31 @@ public class ToolController {
         return "redirect:/tool/update?id=" + id;
     }
 
+//    @GetMapping("/delete-entry")
+//    public String deleteEntry(@RequestParam int entryId, @RequestParam int toolId, Model model) {
+//        System.out.println("Entry ID: " + entryId);
+//        System.out.println("Tool ID: " + toolId);
+//
+//        Tool tool = toolService.findById(toolId);
+//        List<Entry> entries = tool.getEntries();
+//
+//        for (Entry e : entries) {
+//            System.out.println("id: " + e.getId());
+//        }
+//        List<Entry> newEntries = entries.stream().filter(e -> e.getId() != entryId).collect(Collectors.toList());
+//
+//        System.out.println("Updated List of Entries: ");
+//        for (Entry e: newEntries) {
+//            System.out.println("id: " + e.getId());
+//        }
+//
+//        //persist into database
+//        tool.setEntries(newEntries);
+//
+//        return "redirect:/tool/update?id=" + toolId;
+//    }
+
+
     @GetMapping("find")
     public String findBySerialNumber(
             @RequestParam String searchCriteria,

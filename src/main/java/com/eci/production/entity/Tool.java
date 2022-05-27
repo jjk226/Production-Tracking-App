@@ -31,8 +31,8 @@ public class Tool {
 
     @OneToMany(
             mappedBy="tool",
-            fetch=FetchType.EAGER,
-            cascade=CascadeType.ALL
+            cascade=CascadeType.ALL,
+            orphanRemoval = true
     )
     private List<Entry> entries;
 
@@ -98,7 +98,7 @@ public class Tool {
     }
 
     public void addEntry(Entry entry) {
+        entries.add(entry);
 
-        this.entries.add(entry);
     }
 }
