@@ -24,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            <form th:action="@{/subassembly/find}" method="GET">
+            <form th:action="@{/entry/find}" method="GET">
                 <div class="form-group">
                     <br>
                     <div>
@@ -35,7 +35,7 @@
                         </select>
                         <input type="text" name="searchTerm" placeholder="Search Term"/>
                         <button type="submit" class="btn btn-primary btn-sm">Search</button>
-                        <a th:href="@{/subassembly/add-form}" class="btn btn-primary btn-sm">Add New</a>
+                        <a th:href="@{/entry/add-form}" class="btn btn-primary btn-sm">Add New</a>
 
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                 <td th:text="${#dates.format(entry.endDate, 'MMM-dd-YYYY HH:mm')}"/>
                 <td th:text="${entry.status}"/>
                 <td>
-                    <a th:href="@{/subassembly/update(id=${entry.id})}" class="btn btn-primary btn-sm">
+                    <a th:href="@{/entry/update(id=${entry.id})}" class="btn btn-primary btn-sm">
                         Update
                     </a>
                 </td>

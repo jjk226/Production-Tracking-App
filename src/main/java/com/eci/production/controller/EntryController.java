@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
-@RequestMapping("/subassembly")
+@RequestMapping("/entry")
 public class EntryController {
 
     private EntryService entryService;
@@ -58,7 +58,7 @@ public class EntryController {
 
         entryService.save(savedEntry);
 
-        return "redirect:/subassembly/entries";
+        return "redirect:/entry/entries";
 
     }
 
@@ -109,7 +109,7 @@ public class EntryController {
                 model.addAttribute("entries", entriesByEmployeeId);
                 return "entries";
         }
-        return "redirect:/subassembly/entries";
+        return "redirect:/entry/entries";
     }
 
     @GetMapping(path="/findByEmployeeId")

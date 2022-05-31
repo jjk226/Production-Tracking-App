@@ -67,10 +67,10 @@
             <td th:text="${entry.timeDiff}"/>
             <td th:style="${entry.status} == 'CLOSED' ? 'background: #33FF4E' : 'background: #FF4F33'" th:text="${entry.status}" />
             <td>
-                <a th:href="@{/subassembly/update(id=${entry.id})}" class="btn btn-primary btn-sm">
+                <a th:href="@{/entry/update(id=${entry.id})}" class="btn btn-primary btn-sm">
                     Update
                 </a>
-                <a th:href="@{/subassembly/delete(entryId=${entry.id}, toolId=${tool.id})}" class="btn btn-danger btn-sm">
+                <a th:href="@{/entry/delete(entryId=${entry.id}, toolId=${tool.id})}" class="btn btn-danger btn-sm">
                     Delete
                 </a>
             </td>

@@ -11,7 +11,7 @@
 <body>
   <div class="container">
     <p class="h4 mb-4">Update Entry</p>
-    <form action="#" th:action="@{/subassembly/save}" th:object="${tempEntry}" method="POST">
+    <form action="#" th:action="@{/entry/save}" th:object="${tempEntry}" method="POST">
       <input type="hidden" th:field="*{id}"/>
       Tool S/N: <text th:text="${tempEntry.serialNumber}"></text>
         <br><br>
