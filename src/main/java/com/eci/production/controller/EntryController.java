@@ -13,12 +13,12 @@ import java.util.*;
 
 @Controller
 @RequestMapping("/subassembly")
-public class SubAssemblyController {
+public class EntryController {
 
     private EntryService entryService;
 
     @Autowired
-    public SubAssemblyController(EntryService entryService) {
+    public EntryController(EntryService entryService) {
         this.entryService = entryService;
     }
 
