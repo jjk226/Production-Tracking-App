@@ -51,6 +51,7 @@
         <tr>
             <th>Employee Id</th>
             <th>Operation</th>
+            <th>Note</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Total Time (hrs)</th>
@@ -62,6 +63,7 @@
         <tr th:each="entry: ${entries}">
             <td th:text="${entry.employeeId}"/>
             <td th:text="${entry.operation}"/>
+            <td th:text="${entry.note}"/>
             <td th:text="${#dates.format(entry.startDate, 'MMM-dd-YYYY HH:mm')}"/>
             <td th:text="${#dates.format(entry.endDate, 'MMM-dd-YYYY HH:mm')}"/>
             <td th:text="${entry.timeDiff}"/>

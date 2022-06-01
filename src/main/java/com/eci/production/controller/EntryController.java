@@ -34,6 +34,7 @@ public class EntryController {
         savedEntry.setProductionOrder(entry.getProductionOrder());
         savedEntry.setEmployeeId(entry.getEmployeeId());
         savedEntry.setOperation(entry.getOperation());
+        savedEntry.setNote(entry.getNote());
         String savedEntryStatus = savedEntry.getStatus();
         String entryStatus = entry.getStatus();
 
