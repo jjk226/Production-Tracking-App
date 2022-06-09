@@ -10,12 +10,15 @@ import java.util.List;
 public class Tool {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id")
     private int id;
 
     @Column(name="serial_number")
     private int serialNumber;
+
+    @Column(name="production_order")
+    private int productionOrder;
 
     @Column(name="part_number")
     private String partNumber;
@@ -29,6 +32,9 @@ public class Tool {
     @Column(name="name")
     private String name;
 
+    @Column(name="subassembly")
+    private boolean isSubassembly = false;
+
     @OneToMany(
             mappedBy="tool",
             cascade=CascadeType.ALL,
@@ -37,7 +43,6 @@ public class Tool {
     private List<Entry> entries;
 
     public Tool() {
-
     }
 
     public int getId() {
@@ -100,5 +105,21 @@ public class Tool {
     public void addEntry(Entry entry) {
         entries.add(entry);
 
+    }
+
+    public boolean isSubassembly() {
+        return isSubassembly;
+    }
+
+    public void setIsSubassembly(boolean subassembly) {
+        isSubassembly = subassembly;
+    }
+
+    public int getProductionOrder() {
+        return productionOrder;
+    }
+
+    public void setProductionOrder(int productionOrder) {
+        this.productionOrder = productionOrder;
     }
 }

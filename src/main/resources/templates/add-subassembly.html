@@ -31,8 +31,8 @@
 <body>
 <header th:insert="fragments.html :: nav"></header>
 <div class="container">
-    <p class="h4 mb-4">Add New Tool</p>
-    <form action="#" th:action="@{/tool/save}" th:object="${tempTool}" method="POST">
+    <p class="h4 mb-4">Add New Subassembly</p>
+    <form action="#" th:action="@{/subassembly/save}" th:object="${tempSubassembly}" method="POST">
         <input type="hidden" th:field="*{id}"/>
         <label>Serial Number:</label> <input type="text" th:field="*{serialNumber}" placeholder=""/>
         </br></br>
@@ -40,17 +40,15 @@
         </br></br>
         <label>Name:</label> <input type="text" th:field="*{name}" placeholder=""/>
         </br></br>
-        <label>Product Line:</label>
-        <select th:field="*{productLine}" placeholder="">
-            <option th:value="'null'" th:text="Select"></option>
-            <option th:value="'LIBRA'" th:text="Libra"></option>
-            <option th:value="'PRIMA'" th:text="Prima"></option>
-            <option th:value="'QSF'" th:text="QSF"></option>
-        </select>
+        <label>Production Order:</label> <input type="text" th:field="*{productionOrder}" placeholder="# after 'PR'"/>
+<!--        <label>Product Line:</label>-->
+<!--        <select th:field="*{productLine}" placeholder="">-->
+<!--            <option th:value="'null'" th:text="Select"></option>-->
+<!--            <option th:value="'LIBRA'" th:text="Libra"></option>-->
+<!--            <option th:value="'PRIMA'" th:text="Prima"></option>-->
+<!--            <option th:value="'QSF'" th:text="QSF"></option>-->
+<!--        </select>-->
         </br></br>
-        <label>Customer: </label><input type="text" th:field="*{customer}" placeholder=""/>
-        </br></br>
-
         <button type="submit">Save</button>
 
     </form>

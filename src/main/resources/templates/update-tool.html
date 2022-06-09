@@ -12,6 +12,7 @@
 <body>
 <header th:insert="fragments.html :: nav"></header>
 <div class="container">
+    <h2>Tools</h2>
     <br></br>
     <table class="table table-sm table-bordered table-condensed text-small">
         <thead class="thead-dark">
@@ -56,6 +57,7 @@
             <th>End Date</th>
             <th>Total Time (hrs)</th>
             <th>Status</th>
+            <th>Comment</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -68,6 +70,7 @@
             <td th:text="${#dates.format(entry.endDate, 'MMM-dd-YYYY HH:mm')}"/>
             <td th:text="${entry.timeDiff}"/>
             <td th:style="${entry.status} == 'CLOSED' ? 'background: #33FF4E' : 'background: #FF4F33'" th:text="${entry.status}" />
+            <td th:text="${entry.comment}"/>
             <td>
                 <a th:href="@{/entry/update(id=${entry.id})}" class="btn btn-primary btn-sm">
                     Update

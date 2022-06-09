@@ -35,12 +35,22 @@ public class EntryController {
         savedEntry.setEmployeeId(entry.getEmployeeId());
         savedEntry.setOperation(entry.getOperation());
         savedEntry.setNote(entry.getNote());
+        savedEntry.setComment(entry.getComment());
+
         String savedEntryStatus = savedEntry.getStatus();
         String entryStatus = entry.getStatus();
 
+        String path = "tool";
+        int id = savedEntry.getTool().getId();
+        boolean isSubassembly = savedEntry.getTool().isSubassembly();
+
+        if (isSubassembly) {
+            path = "subassembly";
+        }
+
         if (savedEntryStatus.equals(entryStatus)) {
             entryService.save(savedEntry);
-            return "redirect:/tool/update?id=" + savedEntry.getTool().getId();
+            return "redirect:/" + path + "/update?id=" + id;
         }
 
         savedEntry.setStatus(entryStatus);
@@ -54,13 +64,12 @@ public class EntryController {
         if (savedEntry.getSerialNumber() != 0) {
             entryService.save(savedEntry);
 
-            return "redirect:/tool/update?id=" + savedEntry.getTool().getId();
+            return "redirect:/" + path + "/update?id=" + id;
         }
 
         entryService.save(savedEntry);
 
-        return "redirect:/entry/entries";
-
+        return "redirect:/" + path + "/update?id=" + id;
     }
 
     public void createNewEntry(Entry entry) {
@@ -131,9 +140,15 @@ public class EntryController {
     public String delete(@RequestParam("entryId") int entryId, @RequestParam("toolId") int toolId) {
         Entry entryToDelete = entryService.findById(entryId);
         System.out.println("entry to delete: " + entryToDelete);
+
+        String path = "tool";
+        boolean isSubassembly = entryToDelete.getTool().isSubassembly();
+
+        if (isSubassembly) { path = "subassembly"; }
+
         entryService.delete(entryToDelete);
 
-        return "redirect:/tool/update?id=" + toolId;
+        return "redirect:/" + path + "/update?id=" + toolId;
     }
 
 

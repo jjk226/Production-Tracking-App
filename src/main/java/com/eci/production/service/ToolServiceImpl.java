@@ -39,5 +39,14 @@ public class ToolServiceImpl implements ToolService {
         return toolRepository.findBySerialNumber(serialNumber);
     }
 
+    public List<Tool> findByProductionOrder(int productionOrder) {
+        return toolRepository.findByProductionOrder(productionOrder);
+    }
+
+    @Override
+    public List<Tool> findByPartNumber(String partNumber) {
+        return toolRepository.findByPartNumber(partNumber);
+    }
+
 
 }

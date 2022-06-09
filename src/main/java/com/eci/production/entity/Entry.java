@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class Entry {
     public enum Status {OPEN, CLOSED}
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id")
     private int id;
 
@@ -38,6 +39,9 @@ public class Entry {
 
     @Column(name="operation")
     private String operation;
+
+    @Column(name="comment")
+    private String comment;
 
     @ManyToOne(optional=false)
     @JoinColumn(name="tool_id", nullable=false)
@@ -74,8 +78,7 @@ public class Entry {
         this.productionOrder = productionOrder;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getStartDate() {return startDate;
     }
 
     public void setStartDate(Date startDate) {
@@ -153,6 +156,14 @@ public class Entry {
         DecimalFormat df = new DecimalFormat("#.##");
 
         return Double.valueOf(df.format(diffInDecimal));
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override

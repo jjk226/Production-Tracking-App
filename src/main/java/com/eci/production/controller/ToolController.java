@@ -31,7 +31,7 @@ public class ToolController {
     @GetMapping("/")
     public String showTools(Model model) {
         List<Tool> tools = toolService.findAll();
-        List<Tool> sortedTools = tools.stream().sorted((e1, e2) -> e1.getSerialNumber() - e2.getSerialNumber()).collect(Collectors.toList());
+        List<Tool> sortedTools = tools.stream().filter(tool -> !tool.isSubassembly()).sorted((e1, e2) -> e1.getSerialNumber() - e2.getSerialNumber()).collect(Collectors.toList());
         model.addAttribute("tools", sortedTools);
         return "tools";
     }
