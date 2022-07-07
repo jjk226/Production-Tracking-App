@@ -12,7 +12,7 @@
 <body>
 <div class="container">
   <p class="h4 mb-4">Add New Entry</p>
-  <form action="#" th:action="@{/entry/save}" th:object="${tempEntry}" method="POST">
+  <form action="#" th:action="@{/entry/add-entry}" th:object="${tempEntry}" method="POST">
     <input type="hidden" th:field="*{id}"/>
     Production Order: <input type="text" th:field="*{productionOrder}" placeholder="# after 'PR'"/>
 

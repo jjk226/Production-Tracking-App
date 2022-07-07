@@ -22,12 +22,26 @@ public class EntryController {
         this.entryService = entryService;
     }
 
+    @RequestMapping(path="/add-entry")
+    public String addNewEntry(@ModelAttribute("tempEntry") Entry entry) {
+        Entry newEntry = new Entry();
+        System.out.println("new entry id: " + newEntry.getId());
+        newEntry.setProductionOrder(entry.getProductionOrder());
+        newEntry.setEmployeeId(entry.getEmployeeId());
+        newEntry.setStartDate(new Date());
+        newEntry.setStatus("OPEN");
+        entryService.save(newEntry);
+
+        return "redirect:/entry/entries";
+    }
+
+
     @PostMapping(path="/save")
     public String saveNewEntry(@ModelAttribute("tempEntry") Entry entry, HttpServletRequest request) throws Exception {
 
-        if (entry.getId() == 0) {
-            this.createNewEntry(entry);
-        }
+//        if (entry.getId() == 0) {
+//            this.createNewEntry(entry);
+//        }
 
         Entry savedEntry = entryService.findById(entry.getId());
 
@@ -40,13 +54,11 @@ public class EntryController {
         String savedEntryStatus = savedEntry.getStatus();
         String entryStatus = entry.getStatus();
 
-        String path = "tool";
+
         int id = savedEntry.getTool().getId();
         boolean isSubassembly = savedEntry.getTool().isSubassembly();
-
-        if (isSubassembly) {
-            path = "subassembly";
-        }
+        //use ternary operator to determine path - subassembly or tool
+        String path = ((isSubassembly == true) ? "subassembly" : "tool");
 
         if (savedEntryStatus.equals(entryStatus)) {
             entryService.save(savedEntry);
@@ -57,8 +69,10 @@ public class EntryController {
 
         if (entryStatus.equals("CLOSED")) {
             savedEntry.setEndDate(new Date());
+            savedEntry.setTimeDiff(savedEntry.getTimeDiff());
         } else if (entryStatus.equals("OPEN")) {
             savedEntry.setEndDate(null);
+            savedEntry.setTimeDiff(0);
         }
 
         if (savedEntry.getSerialNumber() != 0) {
@@ -72,11 +86,11 @@ public class EntryController {
         return "redirect:/" + path + "/update?id=" + id;
     }
 
-    public void createNewEntry(Entry entry) {
-        entry.setStartDate(new Date());
-        entry.setStatus("OPEN");
-        entryService.save(entry);
-    }
+//    public void createNewEntry(Entry entry) {
+//        entry.setStartDate(new Date());
+//        entry.setStatus("OPEN");
+//        entryService.save(entry);
+//    }
 
     @GetMapping("/add-form")
     public String addForm(@ModelAttribute("tempEntry") Entry entry, Model model) {

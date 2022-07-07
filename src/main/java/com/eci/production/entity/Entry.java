@@ -47,6 +47,7 @@ public class Entry {
     @JoinColumn(name="tool_id", nullable=false)
     private Tool tool;
 
+    @Column(name="time_diff")
     private double timeDiff;
 
     @Column(name="note")
