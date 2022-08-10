@@ -1,0 +1,13 @@
+5/20/2022
+
+problem:
+When opening the app, time stamps are displayed in UTC, not EST.
+
+solution:
+use "heroku config:add TZ="America/New_York" " to set the config variables.
+Key is "TZ" and Value is "America/New_York"
+
+Ideally, the client side should convert UTC appropriately.
+
+Problem:
+Delete Button on each entry not working
